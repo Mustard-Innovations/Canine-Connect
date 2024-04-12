@@ -33,7 +33,7 @@ const SignUp = () => {
 
   const router = useRouter()
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
 
     try {
@@ -53,7 +53,7 @@ const SignUp = () => {
 
       await setDoc(doc(db, 'users', user.uid), formDataCopy)
 
-      router.push('/')
+      router.push('/login')
     } catch (error) {
       toast.error('Something went wrong with registration')
     }
@@ -62,7 +62,7 @@ const SignUp = () => {
   return (
     <div>
       <div className="flex-row-reverse lg:flex items-center justify-center">
-        <div className="bg-white text-black m-auto h-screen lg:w-2/3">
+        <div className="bg-white text-black m-auto lg:w-2/3">
           <div className="pt-5 text-3xl font-bold m-auto mt-20 p-5">Canine Connect</div>
           <form onSubmit={onSubmit} className="max-w-sm m-auto font-light my-5 flex-start">
             <p className=" ">Create your account</p>

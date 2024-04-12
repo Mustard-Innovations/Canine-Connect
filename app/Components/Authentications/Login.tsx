@@ -25,7 +25,7 @@ const Login = () => {
 
     const router = useRouter()
 
-    const onSubmit = async (e) => {
+    const onSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
 
         try {
@@ -48,7 +48,7 @@ const Login = () => {
   return (
     <div>
         <div className="flex-row-reverse lg:flex items-center justify-center">
-            <div className="bg-white text-black m-auto h-screen lg:w-2/3">
+            <div className="bg-white text-black m-auto lg:w-2/3">
                 <div className="pt-5 text-3xl font-bold m-auto mt-20 p-5">Welcome to Canine Connect</div>
                 <form onSubmit={onSubmit} className="max-w-sm mx-auto">
                     <div className=" font-light my-5 flex-start">Login to your account</div>
@@ -103,19 +103,6 @@ const Login = () => {
 
                 <OAuth />
             </div>
-
-            
-
-            {/* <div className="lg:w-1/3 bg-grey m-5 text-center items-center align-center">
-                <div className="p-5 text-3xl h-1/2 font-bold mx-5">
-                    Jerskits.
-                </div>
-                <div>
-                    <img className="p-5 m-5" style={{ marginLeft: 150 }} width="30%" src="https://banner2.cleanpng.com/20190504/blc/kisspng-scalable-vector-graphics-encapsulated-postscript-c-leaf-png-icon-18-png-repo-free-png-icons-5ccdc273b52358.445843551556988531742.jpg" alt="logo" />
-                    Best quality materials
-                    <div className="font-light text-xs p-3">Our products is made from at least 75% <br /> recycled polyester fibers</div>
-                </div>
-            </div> */}
         </div>
     </div>
   )
