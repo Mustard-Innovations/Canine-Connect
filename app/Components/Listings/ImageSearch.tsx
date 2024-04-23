@@ -68,11 +68,11 @@ const ImageSearch = () => {
         />
       </form>
 
-      <div className="results">
+      <div className="flex flex-wrap justify-center">
         {results.map((result, index) => (
-          <div className="card" key={index}>
-            <img src={result.urls.small} alt={result.alt_description} />
-            <div className="card-content">
+          <div className="max-w-sm rounded overflow-hidden shadow-lg" key={index}>
+            <img src={result.urls.small} alt={result.alt_description} className='w-full'  />
+            <div className="px-6 py-4">
               <p>{result.alt_description}</p>
               {/* Use the love icon for the "Add to Favorites" button */}
               <button onClick={() => addToFavorites(result.urls.small)}>
@@ -82,7 +82,7 @@ const ImageSearch = () => {
                   viewBox="0 0 24 24" 
                   stroke-width="1.5" 
                   stroke="currentColor" 
-                  className="w-6 h-6">
+                  className="w-6 h-6 bg-black">
                   <path 
                     stroke-linecap="round" 
                     stroke-linejoin="round" 
