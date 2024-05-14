@@ -107,7 +107,7 @@ const SignUp = () => {
                 onClick={() => setShowPassword((prevState) => !prevState)} 
               />
             </div>
-            <button type="submit" className="text-white bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-black-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
+            <button type="submit" className="btn btn-active">Sign Up</button>
           </form>
 
           <div className="flex m-auto items-center justify-evenly mb-5">

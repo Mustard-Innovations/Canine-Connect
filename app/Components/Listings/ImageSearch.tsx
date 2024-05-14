@@ -52,7 +52,7 @@ const ImageSearch = () => {
   };
 
   return (
-    <div className="App">
+    <div className="text-center justify-center">
       <div className="text-center text-black items-center">
         <button className='m-2 p-1' onClick={() => handleOptionSelect('clothing brand')}>Brand</button>
         <button className='m-2 p-1' onClick={() => handleOptionSelect('men clothing')}>Men</button>
@@ -70,22 +70,22 @@ const ImageSearch = () => {
 
       <div className="flex flex-wrap justify-center">
         {results.map((result, index) => (
-          <div className="max-w-sm rounded overflow-hidden shadow-lg" key={index}>
-            <img src={result.urls.small} alt={result.alt_description} className='w-full'  />
-            <div className="px-6 py-4">
-              <p>{result.alt_description}</p>
+          <div className="card card-compact w-96 m-2 bg-base-100 shadow-xl" key={index}>
+            <img src={result.urls.small} alt={result.alt_description} className='w-100 p-5 m-2'  />
+            <div className="card-body">
+              <p className='card-title'>{result.alt_description}</p>
               {/* Use the love icon for the "Add to Favorites" button */}
               <button onClick={() => addToFavorites(result.urls.small)}>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
                   fill="none" 
                   viewBox="0 0 24 24" 
-                  stroke-width="1.5" 
+                  strokeWidth="1.5" 
                   stroke="currentColor" 
                   className="w-6 h-6 bg-black">
                   <path 
-                    stroke-linecap="round" 
-                    stroke-linejoin="round" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                 </svg>
               </button>
@@ -94,7 +94,7 @@ const ImageSearch = () => {
         ))}
       </div>
 
-      {page > 1 && <button id="show-more" onClick={handleShowMore}>Show More</button>}
+      {page > 1 && <button id="show-more" className='bg-black' onClick={handleShowMore}>Show More</button>}
     </div>
   );
 };

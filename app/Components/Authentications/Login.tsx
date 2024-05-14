@@ -95,7 +95,7 @@ const Login = () => {
                     <div className="ms-2 text-sm font-medium text-black-900">Forgot password?</div>
                 </Link>
                 </div>
-                <button type="submit" className="text-white mb-5 pb-5 bg-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-black-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">LOGIN</button>
+                <button type="submit" className="btn btn-active">LOGIN</button>
                 <div className="mb-5 text-sm">Don't have an account? 
                     <Link className="font-medium" href="/signup">Sign Up</Link>
                 </div>
