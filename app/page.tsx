@@ -1,9 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import ImageSearch from "./Components/Listings/ImageSearch";
+import { 
+  MagnifyingGlassIcon, 
+  ShoppingBagIcon, 
+  HeartIcon, 
+  ArrowRightIcon,
+  ArrowLeftCircleIcon, 
+  ArrowRightCircleIcon,
+  PlayCircleIcon
+} from '@heroicons/react/24/outline'
 import Search from "./Components/Listings/Search";
 
 export default function Home() {
+  const username = 'Pristia';
+  const date = 2024;
+
+
+
   return (
     <main className="flex min-h-screen flex-col items-center">
       <header>
@@ -15,7 +29,23 @@ export default function Home() {
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                <ul tabIndex={0} className="menu menu-sm dropdown-content z-[1] p-3 shadow bg-white w-screen">
+                  <p className="m-5 font-bold">Menu</p> 
+                  <div className="mx-3">
+                    <div className="avatar">
+                      <div className="w-24 m-3 rounded-full">
+                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                      </div>  
+                      <div>
+                        <p className="mt-5 font-semibold">Hi, {username}</p>
+                        <p className="">Member since {date}</p>
+                      </div>
+                    </div>
+                    <label className="input input-bordered flex items-center gap-2 mr-8 mt-5">
+                      <input type="text" className="grow" placeholder="Search" />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
+                    </label>
+                  </div> 
                   <li><a>Homepage</a></li>
                   <li><a>Portfolio</a></li>
                   <li><a>About</a></li>
@@ -60,33 +90,63 @@ export default function Home() {
             </div>
             <div className="navbar-center hidden lg:flex">
               <ul className="menu menu-horizontal px-1">
-                <li><a>Item 1</a></li>
-                <li>
-                  <details>
-                    <summary>Parent</summary>
-                    <ul className="p-2">
-                      <li><a>Submenu 1</a></li>
-                      <li><a>Submenu 2</a></li>
-                    </ul>
-                  </details>
-                </li>
-                <li><a>Item 3</a></li>
+                <li><Link href=''>Men</Link></li>
+                <li><Link href=''>Women</Link></li>
+                <li><Link href=''>Kids</Link></li>
+                <li><Link href=''>Brands</Link></li>
               </ul>
             </div>
             <div className="navbar-end">
-              <a className="btn">Button</a>
+              <MagnifyingGlassIcon className="h-5 w-5 mx-5" />
+              <ShoppingBagIcon className="h-5 w-5 mx-5" />
+              <HeartIcon className="h-5 w-5 m-5" />
+              <Link href="/login" className="mx-5">Sign In</Link>
+              {/* Search bar, orders, favourites and sign in */}
             </div>
           </div>
         </nav>
 
 
-        <div className="h-screen">
-
+        <div className="glass">
+          <div className="p-10">
+            <p className="mt-5 p-2 pt-6 ml-4 bg-black border h-20 w-12">logo</p>
+            <p className="mt-5 ml-4"><span className="py-3 m-1 bg-black border text-xs">HOME</span>HOME KIT 21/22</p>
+            <div className="md:text-9xl md:w-full text-7xl font-bold m-5">
+              LIVERPOOL
+            </div>
+            <div className="md:flex flex-1flex w-full flex-col lg:flex-row">
+              <div className="card bg-base-300 rounded-box grid mx-5 flex-grow place-items-center">
+                <div className="flex md:p-5">
+                  <video src="">
+                    <PlayCircleIcon className="w-12 h-12"/>Hello
+                  </video>
+                  <p>
+                    <span className="font-bold text-xl">How Was Made?</span> <br />
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod eligendi, labore sit dolorum tenetur, dolor nemo enim nesciunt autem, alias sunt numquam. Ullam, architecto fuga ducimus sint aperiam in tempora.
+                  </p>
+                </div>
+              </div>  
+              <div className="divider lg:divider-horizontal"></div>
+              <div className="card rounded-box grid mx-5 flex-grow place-items-center">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit tenetur iusto amet, iure est neque suscipit eaque, tempore nisi fugit aspernatur numquam, nobis optio laudantium. Quasi qui aperiam id harum.</p>
+                <div className="flex">
+                  <button className="bg-white btn flex mr-14">
+                    SHOP NOW
+                    <ArrowRightIcon className="w-5 h-5" />
+                  </button>
+                  <div className="flex ml-14">
+                    <ArrowLeftCircleIcon className="w-12 h-13" />
+                    <ArrowRightCircleIcon className="w-12 h-13"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
       <div className="bg-white w-screen">
-        <div className="flex flex-wrap text-center">
+        <div className="flex flex-wrap text-center justify-evenly">
           <ImageSearch />
         </div>
 
