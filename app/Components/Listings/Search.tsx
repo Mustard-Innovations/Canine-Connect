@@ -1,56 +1,46 @@
 'use client'
-import React, { FormEvent, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-interface SearchProps {
-    onSubmit: (query: string) => void; // Callback function for form submission
-    placeholder?: string; // Placeholder text for the input field
-}
+const SearchComponent: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-const Search: React.FC<SearchProps> = ({ onSubmit, placeholder = 'Search Images' }) => {
-    const [isInputVisible, setIsInputVisible] = useState(false);
-    const [inputData, setInputData] = useState('');
+  const handleIconClick = () => {
+    setIsExpanded(true);
+  };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
-        event.preventDefault();
-        onSubmit(inputData); // Invoke the onSubmit callback with the input data
+  const handleClickOutside = (event: MouseEvent) => {
+    if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
+      setIsExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
     };
+  }, []);
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                {isInputVisible ? (
-                    <input
-                        id="search-input"
-                        type="text"
-                        value={inputData}
-                        onChange={(e) => setInputData(e.target.value)}
-                        placeholder={placeholder}
-                    />
-                ) : (
-                    <button type="button" onClick={() => setIsInputVisible(true)}>
-                        {/* Use the magnifying glass icon for the search button */}
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                            />
-                        </svg>
-                    </button>
-                )}
-                {isInputVisible && (
-                    <button type="submit">Search</button>
-                )}
-            </form>
-        </div>
-    );
+  return (
+    <div className="relative">
+      <div
+        className={`flex items-center border rounded ${isExpanded ? 'p-1' : 'p-0'}`}
+        onClick={handleIconClick}
+      >
+        <MagnifyingGlassIcon className="h-5 w-5 mx-6 cursor-pointer" />
+        {isExpanded && (
+          <input
+            type="text"
+            ref={inputRef}
+            className="border-none focus:ring-0 outline-none ml-2"
+            placeholder="Search..."
+          />
+        )}
+      </div>
+    </div>
+  );
 };
 
-export default Search;
+export default SearchComponent;
