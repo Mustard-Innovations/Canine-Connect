@@ -18,7 +18,7 @@ const Hero = () => {
                 controls 
                 loop 
                 autoPlay 
-                src="https://www.youtube.com/shorts/BdapS2C6qPQ?feature=share">  
+                src="https://www.youtube.com/watch?v=j7fxbKTKuLQ">  
                 </video>
                 <p>
                 <span className="font-bold text-xl">How Was Made?</span> <br />

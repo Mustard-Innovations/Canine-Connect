@@ -26,17 +26,15 @@ const SearchComponent: React.FC = () => {
   return (
     <div className="relative">
       <div
-        className={`flex items-center border rounded ${isExpanded ? 'p-1' : 'p-0'}`}
+        className={`flex items-center ${isExpanded ? '' : ''}`}
         onClick={handleIconClick}
       >
-        <MagnifyingGlassIcon className="h-5 w-5 mx-6 cursor-pointer" />
+        <MagnifyingGlassIcon className="h-6 w-6 mx-6 cursor-pointer" />
         {isExpanded && (
-          <input
-            type="text"
-            ref={inputRef}
-            className="border-none focus:ring-0 outline-none ml-2"
-            placeholder="Search..."
-          />
+          <label className="bg-white input input-bordered flex items-center gap-2">
+            <input type="text" className="grow" placeholder="Search" />
+            <MagnifyingGlassIcon className='h-4 w-4' />
+          </label>
         )}
       </div>
     </div>

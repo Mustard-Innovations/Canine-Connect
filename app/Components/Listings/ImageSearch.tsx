@@ -4,12 +4,18 @@ import Search from './Search';
 
 const apiKey = "3aHkxAeszwU6Y7rCyFXHWknFOpU6zcqymSnG-x8NJEk";
 
-const ImageSearch = () => {
-  // const [isInputVisible, setIsInputVisible] = useState(false);
-  const [inputData, setInputData] = useState("");
-  const [page, setPage] = useState(1);
-  const [results, setResults] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
+interface ImageResult {
+  urls: {
+    small: string;
+  };
+  alt_description: string;
+}
+
+const ImageSearch: React.FC = () => {
+  const [inputData, setInputData] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [results, setResults] = useState<ImageResult[]>([]);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const searchImages = async (query: string) => {
     const url = `https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${apiKey}`;
@@ -17,19 +23,20 @@ const ImageSearch = () => {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      
+
       if (page === 1) {
-        setResults([]);
+        setResults(data.results);
+      } else {
+        setResults(prevResults => [...prevResults, ...data.results]);
       }
-      
-      setResults(prevResults => [...prevResults, ...data.results]);
+
       setPage(prevPage => prevPage + 1);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setPage(1);
     searchImages(inputData);
@@ -39,14 +46,14 @@ const ImageSearch = () => {
     searchImages(inputData);
   };
 
-  const handleOptionSelect = (option: React.SetStateAction<string> | React.SetStateAction<null>) => {
+  const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
     setInputData(option);
-    // Search for images related to the selected option
+    setPage(1);
     searchImages(option);
   };
 
-  const addToFavorites = (imageUrl: any) => {
+  const addToFavorites = (imageUrl: string) => {
     // Here you can implement the logic to add the image to favorites
     console.log('Added to favorites:', imageUrl);
   };
@@ -62,10 +69,7 @@ const ImageSearch = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <Search 
-          onSubmit={handleSubmit} 
-          placeholder="Custom Placeholder"
-        />
+        <Search placeholder="Custom Placeholder"/>
       </form>
 
       <div className="flex flex-wrap justify-center">
@@ -74,7 +78,6 @@ const ImageSearch = () => {
             <img src={result.urls.small} alt={result.alt_description} className='w-100 p-5 m-2'  />
             <div className="card-body">
               <p className='card-title'>{result.alt_description}</p>
-              {/* Use the love icon for the "Add to Favorites" button */}
               <button onClick={() => addToFavorites(result.urls.small)}>
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -94,10 +97,9 @@ const ImageSearch = () => {
         ))}
       </div>
 
-      {page > 1 && <button id="show-more" className='bg-black' onClick={handleShowMore}>Show More</button>}
+      {page > 1 && <button id="show-more" className='bg-black text-white p-2 mt-5' onClick={handleShowMore}>Show More</button>}
     </div>
   );
 };
 
 export default ImageSearch;
-
