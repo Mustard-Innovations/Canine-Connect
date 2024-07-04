@@ -24,14 +24,14 @@ const SearchComponent: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="">
       <div
-        className={`flex items-center ${isExpanded ? '' : ''}`}
+        className='relative flex'
         onClick={handleIconClick}
       >
-        <MagnifyingGlassIcon className="h-6 w-6 mx-6 cursor-pointer" />
+        <MagnifyingGlassIcon className=" h-6 w-6 m-2 cursor-pointer" />
         {isExpanded && (
-          <label className="bg-white input input-bordered flex items-center gap-2">
+          <label className="relative bg-white input input-bordered flex items-center">
             <input type="text" className="grow" placeholder="Search" />
             <MagnifyingGlassIcon className='h-4 w-4' />
           </label>
