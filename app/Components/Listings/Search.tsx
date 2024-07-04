@@ -1,13 +1,16 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, XCircleIcon } from '@heroicons/react/24/outline';
 
 const SearchComponent: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleIconClick = () => {
-    setIsExpanded(true);
+    setIsExpanded((prev) => !prev);
+    if (!isExpanded) {
+      inputRef.current?.focus();
+    }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -24,19 +27,26 @@ const SearchComponent: React.FC = () => {
   }, []);
 
   return (
-    <div className="">
-      <div
-        className='relative flex'
-        onClick={handleIconClick}
-      >
-        <MagnifyingGlassIcon className=" h-6 w-6 m-2 cursor-pointer" />
-        {isExpanded && (
-          <label className="relative bg-white input input-bordered flex items-center">
-            <input type="text" className="grow" placeholder="Search" />
-            <MagnifyingGlassIcon className='h-4 w-4' />
-          </label>
-        )}
-      </div>
+    <div className="relative flex items-center">
+      {isExpanded ? (
+        <div className="relative flex items-center bg-slate-300 input input-bordered">
+          <input 
+            ref={inputRef} 
+            type="text" 
+            className="grow p-2" 
+            placeholder="Search" 
+          />
+          <XCircleIcon 
+            className="h-6 w-6 m-2 cursor-pointer" 
+            onClick={handleIconClick} 
+          />
+        </div>
+      ) : (
+        <MagnifyingGlassIcon 
+          className="h-6 w-6 m-2 cursor-pointer" 
+          onClick={handleIconClick} 
+        />
+      )}
     </div>
   );
 };
