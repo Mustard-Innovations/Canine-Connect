@@ -16,8 +16,7 @@ const Hero = () => {
                 <video 
                 className="w-48 m-2 justify-center" 
                 controls 
-                loop 
-                autoPlay 
+                loop  
                 src="https://www.youtube.com/watch?v=j7fxbKTKuLQ">  
                 </video>
                 <p>

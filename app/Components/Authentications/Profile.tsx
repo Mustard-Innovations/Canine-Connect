@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { db } from '@/firebase.config';
 import { updateDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-hot-toast';
-import { useAuth } from '@/app/SmartComp/AuthContext';
+import { useAuth } from '@/app/Components/SmartComp/AuthContext';
 
 const Profile = () => {
   const auth = getAuth();

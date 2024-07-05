@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { useAuth } from '@/app/SmartComp/AuthContext';
+import { useAuth } from '@/app/Components/SmartComp/AuthContext';
 import SearchComponent from '../Listings/Search';
-import UserMenu from '@/app/SmartComp/UserMenu';
+import UserMenu from '@/app/Components/SmartComp/UserMenu';
 
 const Navigation: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <nav className="bg-white text-black w-screen">
+    <nav className="bg-white text-black">
       <div className="navbar px-6">
         <UserMenu user={user} />
         <div className="navbar-center">

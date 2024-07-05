@@ -3,7 +3,7 @@ import Brand from './Brand'
 import ImageSearch from '../Listings/ImageSearch'
 import ShowCollection from './ShowCollection'
 import Contact from './Contact'
-import { title } from 'process'
+import Advert from './Advert'
 
 const BodyItems = () => {
   const exampleItems = [
@@ -47,6 +47,7 @@ const BodyItems = () => {
           description={'We are proud of our new work and are happy to present them to you'} 
           items={exampleItems} 
         />
+        <Advert />
         <div className="flex flex-wrap text-center justify-evenly">
             <ImageSearch />
         </div>

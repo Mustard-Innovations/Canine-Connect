@@ -16,8 +16,8 @@ interface ShowCollectionProps {
 
 const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description, items }) => {
   return (
-    <div className='md:flex mx-5 p-5'>
-      <div className='text-black my-3 md:w-44'>
+    <div className='md:flex mx-4 p-5'>
+      <div className='text-black my-3 md:w-48'>
         <h1 className='text-4xl my-2 font-bold'>{title}</h1>
         <p>{description}</p>
         <div className='flex'>
@@ -29,7 +29,7 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description, ite
         {items.map(item => (
           <div key={item.id} className="my-4 card card-compact bg-base-100 md:w-48 md:m-3 shadow-xl">
             <HeartIcon className='w-5 h-5 m-5' />
-            <figure>
+            <figure className=''>
               <img src={item.imageUrl} alt={item.title} />
             </figure>
             <div className="card-body">

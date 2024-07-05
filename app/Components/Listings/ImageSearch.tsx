@@ -65,6 +65,7 @@ const ImageSearch: React.FC = () => {
 
   return (
     <div className="text-center justify-center">
+      <p className='text-black font-bold m-5 text-5xl'>Popular For You</p>
       <div className="text-center flex text-black items-center">
         <button className='m-2 p-1' onClick={() => handleOptionSelect('clothing brand')}>Brand</button>
         <button className='m-2 p-1' onClick={() => handleOptionSelect('men clothing')}>Men</button>
@@ -101,7 +102,7 @@ const ImageSearch: React.FC = () => {
         ))}
       </div>
 
-      {results.length > 0 && <button id="show-more" className='bg-black text-white p-2 mt-5' onClick={handleShowMore}>Show More</button>}
+      {results.length > 0 && <button id="show-more" className='text-sm bg-black text-white p-2 mt-5' onClick={handleShowMore}>SEE ALL POPULAR PRODUCT</button>}
     </div>
   );
 };
