@@ -3,7 +3,7 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 const Contact: React.FC = () => {
   return (
-    <div className="flex flex-col items-center text-center bg-black m-10 p-10">
+    <div className="flex flex-col mb-12 items-center text-center bg-black m-10 p-10">
       <div className="text-3xl capitalize text-wrap text-white">Subscribe to our newsletter</div>
       <p className="p-3 text-white">
         Top your email below and get the new notifications about Canine Connect

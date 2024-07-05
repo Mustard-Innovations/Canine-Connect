@@ -32,7 +32,7 @@ const OAuth = () => {
           timeStamp: serverTimestamp()
         })
       }
-      router.push('/profile')
+      router.push('/')
     } catch (error) {
       toast.error('Could not authorise with Google')
     }

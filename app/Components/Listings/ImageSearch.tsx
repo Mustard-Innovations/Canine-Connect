@@ -1,6 +1,7 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import Search from './Search';
+import React, { useState, useEffect } from 'react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { getFavorites, addFavorite, removeFavorite } from '../SmartComp/localStorageUtils';
 
 const apiKey = "3aHkxAeszwU6Y7rCyFXHWknFOpU6zcqymSnG-x8NJEk";
 
@@ -16,6 +17,7 @@ const ImageSearch: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [results, setResults] = useState<ImageResult[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("clothing brand");
+  const [favorites, setFavorites] = useState<string[]>(getFavorites());
 
   useEffect(() => {
     searchImages(currentCategory);
@@ -58,35 +60,50 @@ const ImageSearch: React.FC = () => {
     searchImages(option);
   };
 
-  const addToFavorites = (imageUrl: string) => {
-    // Here you can implement the logic to add the image to favorites
-    console.log('Added to favorites:', imageUrl);
+  const toggleFavorite = (imageUrl: string) => {
+    if (favorites.includes(imageUrl)) {
+      removeFavorite(imageUrl);
+      setFavorites(getFavorites());
+    } else {
+      addFavorite(imageUrl);
+      setFavorites(getFavorites());
+    }
   };
 
   return (
     <div className="text-center justify-center">
-      <p className='text-black font-bold m-5 text-5xl'>Popular For You</p>
-      <div className="text-center flex text-black items-center">
+      <p className='font-bold text-5xl text-black'>Popular For You</p>
+      <div className="text-center text-black items-center">
         <button className='m-2 p-1' onClick={() => handleOptionSelect('clothing brand')}>Brand</button>
         <button className='m-2 p-1' onClick={() => handleOptionSelect('men clothing')}>Men</button>
         <button className='m-2 p-1' onClick={() => handleOptionSelect('women clothing')}>Women</button>
         <button className='m-2 p-1' onClick={() => handleOptionSelect('children clothing')}>Kids</button>
         <button className='m-2 p-1' onClick={() => handleOptionSelect('favorite')}>Favorite</button>
-        <form onSubmit={handleSubmit}>
-          <Search placeholder="Custom Placeholder" value={inputData} onChange={(e) => setInputData(e.target.value)} />
-        </form>
       </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="relative flex items-center">
+          <MagnifyingGlassIcon className="h-6 w-6 m-2 cursor-pointer" onClick={handleSubmit} />
+          <input 
+            type="text" 
+            className="grow p-2 bg-slate-300 input input-bordered flex items-center mr-12" 
+            placeholder="Search" 
+            value={inputData}
+            onChange={(e) => setInputData(e.target.value)}
+          />
+        </div>
+      </form>
 
       <div className="flex flex-wrap justify-center">
         {results.map((result, index) => (
           <div className="card card-compact w-96 m-2 bg-base-100 shadow-xl" key={index}>
-            <img src={result.urls.small} alt={result.alt_description} className='w-100 p-5 m-2' />
+            <img src={result.urls.small} alt={result.alt_description} className='h-96 w-100 p-5 m-2' />
             <div className="card-body">
               <p className='card-title'>{result.alt_description}</p>
-              <button onClick={() => addToFavorites(result.urls.small)}>
+              <button onClick={() => toggleFavorite(result.urls.small)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
+                  fill={favorites.includes(result.urls.small) ? "red" : "none"}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"

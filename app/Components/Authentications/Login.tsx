@@ -34,7 +34,7 @@ const Login = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
             if(userCredential.user) {
-                router.push('/profile')
+                router.push('/')
             }
         } catch (error) {
             console.log(error)
