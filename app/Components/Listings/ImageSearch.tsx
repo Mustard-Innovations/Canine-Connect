@@ -18,10 +18,13 @@ const ImageSearch: React.FC = () => {
   const [results, setResults] = useState<ImageResult[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>("clothing brand");
   const [favorites, setFavorites] = useState<string[]>(getFavorites());
+  const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
   useEffect(() => {
-    searchImages(currentCategory);
-  }, [currentCategory]);
+    if (!showFavorites) {
+      searchImages(currentCategory);
+    }
+  }, [currentCategory, showFavorites]);
 
   const searchImages = async (query: string) => {
     const url = `https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${apiKey}`;
@@ -53,11 +56,16 @@ const ImageSearch: React.FC = () => {
   };
 
   const handleOptionSelect = (option: string) => {
-    setCurrentCategory(option);
-    setInputData(option);
-    setPage(1);
-    setResults([]); // Clear previous results
-    searchImages(option);
+    if (option === 'favorite') {
+      setShowFavorites(true);
+    } else {
+      setShowFavorites(false);
+      setCurrentCategory(option);
+      setInputData(option);
+      setPage(1);
+      setResults([]); // Clear previous results
+      searchImages(option);
+    }
   };
 
   const toggleFavorite = (imageUrl: string) => {
@@ -69,6 +77,8 @@ const ImageSearch: React.FC = () => {
       setFavorites(getFavorites());
     }
   };
+
+  const filteredResults = showFavorites ? results.filter(result => favorites.includes(result.urls.small)) : results;
 
   return (
     <div className="text-center justify-center">
@@ -95,7 +105,7 @@ const ImageSearch: React.FC = () => {
       </form>
 
       <div className="flex flex-wrap justify-center">
-        {results.map((result, index) => (
+        {filteredResults.map((result, index) => (
           <div className="card card-compact w-96 m-2 bg-base-100 shadow-xl" key={index}>
             <img src={result.urls.small} alt={result.alt_description} className='h-96 w-100 p-5 m-2' />
             <div className="card-body">
@@ -119,7 +129,11 @@ const ImageSearch: React.FC = () => {
         ))}
       </div>
 
-      {results.length > 0 && <button id="show-more" className='text-sm bg-black text-white p-2 mt-5' onClick={handleShowMore}>SEE ALL POPULAR PRODUCT</button>}
+      {!showFavorites && results.length > 0 && (
+        <button id="show-more" className='text-sm bg-black text-white p-2 mt-5' onClick={handleShowMore}>
+          SEE ALL POPULAR PRODUCT
+        </button>
+      )}
     </div>
   );
 };
