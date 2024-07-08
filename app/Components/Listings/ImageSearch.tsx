@@ -109,7 +109,7 @@ const ImageSearch: React.FC = () => {
 
       <div className="flex flex-wrap justify-center">
         {filteredResults.map((result, index) => (
-          <Link href={`/product-details/${result.id}`} passHref key={result.id}>
+          <Link href={`/product-details?id=${result.id}`} key={result.id} passHref>
             <div className="card card-compact w-96 m-2 bg-base-100 shadow-xl">
               <a>
                 <img src={result.urls.small} alt={result.alt_description} className='h-96 w-full p-5 m-2' />
