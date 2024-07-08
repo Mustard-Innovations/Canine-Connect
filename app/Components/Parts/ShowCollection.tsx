@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon, HeartIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 interface CollectionItem {
   id: number;
@@ -27,7 +28,7 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description, ite
       </div>
       <div className='flex flex-wrap'>
         {items.map(item => (
-          <div key={item.id} className="my-4 card card-compact bg-base-100 md:w-48 md:m-3 shadow-xl">
+          <Link key={item.id} href={`/product-details/${item.id}`} className="my-4 card card-compact bg-base-100 md:w-48 md:m-3 shadow-xl">
             <HeartIcon className='w-5 h-5 m-5' />
             <figure className=''>
               <img src={item.imageUrl} alt={item.title} />
@@ -39,7 +40,7 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description, ite
                 <button className="btn btn-primary">Buy Now</button>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
