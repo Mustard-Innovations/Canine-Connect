@@ -28,16 +28,18 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description, ite
       </div>
       <div className='flex flex-wrap'>
         {items.map(item => (
-          <Link key={item.id} href={`/product-details/${item.id}`} className="my-4 card card-compact bg-base-100 md:w-48 md:m-3 shadow-xl">
-            <HeartIcon className='w-5 h-5 m-5' />
-            <figure className=''>
-              <img src={item.imageUrl} alt={item.title} />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{item.title}</h2>
-              <p>{item.description}</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Buy Now</button>
+          <Link key={item.id} href={`/product-details/${item.id}`} passHref>
+            <div className="my-4 card card-compact bg-base-100 md:w-48 md:m-3 shadow-xl">
+              <HeartIcon className='w-5 h-5 m-5' />
+              <figure className=''>
+                <img src={item.imageUrl} alt={item.title} />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{item.title}</h2>
+                <p>{item.description}</p>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-primary">Buy Now</button>
+                </div>
               </div>
             </div>
           </Link>
