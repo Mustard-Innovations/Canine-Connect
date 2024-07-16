@@ -1,9 +1,14 @@
-import React from 'react';
+// app/components/ShowCollection.tsx
+
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon, HeartIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { fetchUnsplashData } from '@/app/utils/fetchUnsplashData';
 
 interface CollectionItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
   imageUrl: string;
@@ -12,10 +17,24 @@ interface CollectionItem {
 interface ShowCollectionProps {
   title: string;
   description: string;
-  items: CollectionItem[];
 }
 
-const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description, items }) => {
+const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) => {
+  const [items, setItems] = useState<CollectionItem[]>([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const data = await fetchUnsplashData('clothing items', 5);
+        setItems(data);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
   return (
     <div className='md:flex mx-4 p-5'>
       <div className='text-black my-3 md:w-48'>

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 
 interface CollectionItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
   imageUrl: string;

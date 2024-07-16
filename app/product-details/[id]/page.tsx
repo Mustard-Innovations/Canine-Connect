@@ -3,35 +3,37 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import ProductDetails from './ProductDetails';
+import Navigation from '@/app/Components/Parts/Navigation';
+import ShowCollection from '@/app/Components/Parts/ShowCollection';
+import { fetchItemDetails, fetchUnsplashData } from '@/app/utils/fetchUnsplashData';
 
 interface CollectionItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
   imageUrl: string;
 }
 
-const fetchItemDetails = async (id: number): Promise<CollectionItem | null> => {
-  // Replace this with your actual fetch logic
-  const items: CollectionItem[] = [
-    { id: 1, title: 'Item 1', description: 'Description 1', imageUrl: 'https://via.placeholder.com/150' },
-    { id: 2, title: 'Item 2', description: 'Description 2', imageUrl: 'https://via.placeholder.com/150' },
-    // Add more items as needed
-  ];
-
-  return items.find(item => item.id === id) || null;
-};
-
 const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
-  const item = await fetchItemDetails(Number(params.id));
+  const item = await fetchItemDetails(params.id);
 
   if (!item) {
     notFound();
   }
 
+  const relatedItems = await fetchUnsplashData('clothing items', 5);
+
   return (
     <div>
-      <ProductDetails item={item} />
+      <Navigation />
+      <div className='bg-white'>
+        <ProductDetails item={item} />
+        <ShowCollection 
+          title={'You Might Also Like'} 
+          description={''} 
+          items={relatedItems} 
+        />
+      </div>
     </div>
   );
 };
