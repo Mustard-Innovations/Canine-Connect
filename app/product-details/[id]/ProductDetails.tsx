@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeftCircleIcon, StarIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 
 interface CollectionItem {
+  size: string;
   price: number;
   id: string;
   title: string;
@@ -71,24 +72,65 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ item }) => {
           . Style DB2567-011
         </p>
         <hr />
-        <div className='flex my-4 justify-between'>
-          <p className='font-bold text-xl'>Select Size</p>
-          <ChevronDownIcon className='w-8 h-8' />
+
+        <div className="collapse">
+          <input type="checkbox" />
+          <div className="collapse-title flex justify-between">
+            <p className='font-bold text-lg'>Select Size</p>
+            <ChevronDownIcon className='w-8 h-8' />
+          </div>
+          <div className="collapse-content">
+            <p className='m-5'>
+              . Model is wearing size {item.size}, and is 4'9" (144cm approx.)
+              <br />
+              . Standart fit for a relaxed, easy feel
+            </p>
+          </div>
         </div>
+
         <hr />
-        <div className='flex my-4 justify-between'>
-          <p className='font-bold text-xl'>Free Delivery & Return</p>
-          <ChevronDownIcon className='w-8 h-8' />
+
+        <div className="collapse">
+          <input type="checkbox" />
+          <div className="collapse-title flex justify-between">
+            <p className='font-bold text-lg'>Free Delivery & Return</p>
+            <ChevronDownIcon className='w-8 h-8' />
+          </div>
+          <div className="collapse-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nobis quam placeat, officia veniam tenetur. Odio ea possimus aliquid harum, iusto architecto eius qui magni itaque, praesentium neque quibusdam autem.</p>
+          </div>
         </div>
+
         <hr />
-        <div className='flex my-4 justify-between'>
-          <p className='font-bold text-xl'>How This Was Made</p>
-          <ChevronDownIcon className='w-8 h-8' />
+
+        <div className="collapse">
+          <input type="checkbox" />
+          <div className="collapse-title flex justify-between">
+            <p className='font-bold text-lg'>How This Was Made</p>
+            <ChevronDownIcon className='w-8 h-8' />
+          </div>
+          <div className="collapse-content">
+            <p className='m-5'>
+              . Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias optio rerum atque explicabo tempore provident labore ipsam saepe, enim in consequuntur natus sit eius incidunt a placeat itaque hic? Corrupti!
+              <br />
+              . Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga enim debitis quaerat vero, rem perspiciatis repellendus eum veritatis nostrum, porro nobis ea. Aperiam, doloribus obcaecati. Expedita at quaerat totam aut!
+              <br />
+              . Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi laboriosam commodi, error accusamus officiis cum modi, fuga eum voluptas assumenda mollitia. Omnis tempore consequuntur dicta ad sapiente atque, eius molestias?
+            </p>
+          </div>
         </div>
+
         <hr />
-        <div className='flex my-4 justify-between'>
-          <p className='font-bold text-xl'>Review ({item.numberOfReviews ?? 'N/A'} Reviews)</p>
-          <ChevronDownIcon className='w-8 h-8' />
+
+        <div className="collapse">
+          <input type="checkbox" />
+          <div className="collapse-title flex justify-between">
+            <p className='font-bold text-lg'>Review ({item.numberOfReviews ?? 'N/A'} Reviews)</p>
+            <ChevronDownIcon className='w-8 h-8' />
+          </div>
+          <div className="collapse-content">
+            <p>hello</p>
+          </div>
         </div>
         <hr />
       </div>

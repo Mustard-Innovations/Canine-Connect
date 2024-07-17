@@ -10,9 +10,14 @@ const ProductDetailsPage: React.FC = () => {
   return (
     <div>
       <Navigation />
-      <ProductDetails />
       <div className='bg-white'>
-        <ShowCollection title={'You Might Also Like'} description={''} />
+        <ProductDetails  />
+        <div className='mt-10'>
+          <ShowCollection 
+            title={'You Might Also Like'} 
+            description={''} 
+          />
+        </div>
       </div>
       <Footer />
     </div>
