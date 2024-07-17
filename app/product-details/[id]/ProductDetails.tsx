@@ -39,7 +39,7 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ item }) => {
             <div className='flex'>
               <StarIcon className='w-4 h-4 m-1' />
               <p className='font-bold mr-2'>{item.rating ?? 0}</p>
-              <p>({item.numberOfReviews ?? 'N/A'} Reviews)</p>
+              <p>({item.numberOfReviews ?? 0} Reviews)</p>
             </div>
           </div>
           <p className='mx-4 font-bold text-2xl'>${item.price ?? 'N/A'}</p>
@@ -125,11 +125,11 @@ const ProductDetails: React.FC<ProductDetailProps> = ({ item }) => {
         <div className="collapse">
           <input type="checkbox" />
           <div className="collapse-title flex justify-between">
-            <p className='font-bold text-lg'>Review ({item.numberOfReviews ?? 'N/A'} Reviews)</p>
+            <p className='font-bold text-lg'>Review ({item.numberOfReviews ?? 0} Reviews)</p>
             <ChevronDownIcon className='w-8 h-8' />
           </div>
           <div className="collapse-content">
-            <p>hello</p>
+            <p>No Reviews Yet</p>
           </div>
         </div>
         <hr />

@@ -154,7 +154,14 @@ const ProductDetails: React.FC = () => {
             <ChevronDownIcon className='w-8 h-8' />
           </div>
           <div className="collapse-content">
-            <p>hello</p>
+            <div>
+              <p>
+                <span>Jason Smith</span>
+                <br />
+                <StarIcon />
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, sequi dolorem illum aspernatur maxime sapiente ullam laborum odio, ad cupiditate eaque maiores a reprehenderit sunt fuga odit quae. Doloremque, incidunt?</p>
+              </p>
+            </div>
           </div>
         </div>
         <hr />
