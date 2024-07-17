@@ -15,6 +15,7 @@ interface CollectionItem {
   imageUrl: string;
   rating: number;
   numberOfReviews: number;
+  price: number;
 }
 
 const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
@@ -31,11 +32,13 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
       <Navigation />
       <div className='bg-white'>
         <ProductDetails item={item} />
-        <ShowCollection 
-          title={'You Might Also Like'} 
-          description={''} 
-          items={relatedItems}  // Assuming ShowCollection expects an items prop
-        />
+        <div className='mt-10'>
+          <ShowCollection 
+            title={'You Might Also Like'} 
+            description={''} 
+            // items={relatedItems}  // Assuming ShowCollection expects an items prop
+          />
+        </div>
       </div>
       <Footer />
     </div>
