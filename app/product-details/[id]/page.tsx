@@ -13,10 +13,12 @@ interface CollectionItem {
   title: string;
   description: string;
   imageUrl: string;
+  rating: number;
+  numberOfReviews: number;
 }
 
 const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
-  const item = await fetchItemDetails(params.id);
+  const item: CollectionItem | null = await fetchItemDetails(params.id);
 
   if (!item) {
     notFound();
@@ -32,6 +34,7 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
         <ShowCollection 
           title={'You Might Also Like'} 
           description={''} 
+          items={relatedItems}  // Assuming ShowCollection expects an items prop
         />
       </div>
       <Footer />

@@ -37,7 +37,7 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) =
 
   return (
     <div className='md:flex mx-4 p-5'>
-      <div className='text-black my-3 md:w-48'>
+      <div className='text-black my-3'>
         <h1 className='text-4xl my-2 font-bold'>{title}</h1>
         <p>{description}</p>
         <div className='flex'>
