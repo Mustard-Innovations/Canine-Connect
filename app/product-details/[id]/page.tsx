@@ -6,6 +6,7 @@ import ProductDetails from './ProductDetails';
 import Navigation from '@/app/Components/Parts/Navigation';
 import ShowCollection from '@/app/Components/Parts/ShowCollection';
 import { fetchItemDetails, fetchUnsplashData } from '@/app/utils/fetchUnsplashData';
+import Footer from '@/app/Components/Parts/Footer';
 
 interface CollectionItem {
   id: string;
@@ -31,9 +32,9 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
         <ShowCollection 
           title={'You Might Also Like'} 
           description={''} 
-          items={relatedItems} 
         />
       </div>
+      <Footer />
     </div>
   );
 };

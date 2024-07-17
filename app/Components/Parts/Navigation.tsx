@@ -11,7 +11,7 @@ const Navigation: React.FC = () => {
   return (
     <nav className="bg-white text-black">
       <div className="navbar px-6">
-        <UserMenu user={user} />
+        <UserMenu user={user} numberOfItems={0} />
         <div className="navbar-center">
           <a className="md:hidden btn btn-ghost text-xl">Canine Connect</a>
           <div className="hidden md:flex">

@@ -13,8 +13,7 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ user, numberOfItems }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const router = useRouter()
+  const router = useRouter();
 
   const onLogout = () => {
     auth.signOut();
@@ -23,6 +22,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ user, numberOfItems }) => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const formatDate = (dateString: string | undefined) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(date);
   };
 
   return (
@@ -45,7 +54,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user, numberOfItems }) => {
                 <div className="m-4">
                   {user?.photoURL ? (
                     <img
-                      className="w-24 m-3 rounded-full"
+                      className="w-32 rounded-full"
                       src={user.photoURL}
                       alt="User Avatar"
                     />
@@ -57,7 +66,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ user, numberOfItems }) => {
                   <p className="mt-5 font-semibold">Hi, {user?.displayName || 'Guest'}</p>
                   <p>
                     Member since{' '}
-                    {user?.metadata?.creationTime?.split(' ')[0] || 'N/A'}
+                    {formatDate(user?.metadata?.creationTime)}
                   </p>
                 </div>
               </div>

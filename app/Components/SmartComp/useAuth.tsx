@@ -11,7 +11,7 @@ const useAuth = () => {
     // Subscribe to the Firebase Auth state and set the user object
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-    });
+    }); 
 
     // Cleanup subscription on unmount
     return () => unsubscribe();

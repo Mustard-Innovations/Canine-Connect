@@ -45,12 +45,12 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) =
           <ArrowRightCircleIcon className='w-6 h-6 m-2' />
         </div>
       </div>
-      <div className='flex flex-wrap'>
+      <div className='carousel carousel-center rounded-box max-w-md md:max-w-full space-x-4 p-4'>
         {items.map(item => (
           <Link key={item.id} href={`/product-details/${item.id}`} passHref>
-            <div className="my-4 card card-compact bg-base-100 md:w-48 md:m-3 shadow-xl">
+            <div className="carousel-item card card-compact bg-base-100 w-full md:m-3 shadow-xl">
               <HeartIcon className='w-5 h-5 m-5' />
-              <figure className=''>
+              <figure className='w-96'>
                 <img src={item.imageUrl} alt={item.title} />
               </figure>
               <div className="card-body">
