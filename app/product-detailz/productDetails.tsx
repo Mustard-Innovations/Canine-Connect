@@ -155,12 +155,43 @@ const ProductDetails: React.FC = () => {
           </div>
           <div className="collapse-content">
             <div>
-              <p>
-                <span>Jason Smith</span>
+              <p className='my-4'>
+                <span className='font-semibold'>Jason Smith</span>
                 <br />
-                <StarIcon />
+                <div className='flex m-1'>
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, sequi dolorem illum aspernatur maxime sapiente ullam laborum odio, ad cupiditate eaque maiores a reprehenderit sunt fuga odit quae. Doloremque, incidunt?</p>
               </p>
+              <p className='my-4'>
+                <span className='font-semibold'>Wilson Armella</span>
+                <br />
+                <div className='flex m-1'>
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, sequi dolorem illum aspernatur maxime sapiente ullam laborum odio, ad cupiditate eaque maiores a reprehenderit sunt fuga odit quae. Doloremque, incidunt?</p>
+              </p>
+              <p className='my-4'>
+                <span className='font-semibold'>Ajax Simpson</span>
+                <br />
+                <div className='flex m-1'>
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                  <StarIcon className='h-3 w-3' />
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, sequi dolorem illum aspernatur maxime sapiente ullam laborum odio, ad cupiditate eaque maiores a reprehenderit sunt fuga odit quae. Doloremque, incidunt?</p>
+              </p>
+              <button className='w-2/3 p-5 border m-5 '>SEE ALL REVIEW</button>
             </div>
           </div>
         </div>
