@@ -27,6 +27,7 @@ const SearchComponent: React.FC = () => {
   }, []);
 
   return (
+    
     <div className="relative flex items-center">
       {isExpanded ? (
         <div className="relative flex items-center bg-slate-300 input input-bordered">

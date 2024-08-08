@@ -113,6 +113,7 @@ const ImageSearch: React.FC = () => {
           </ul>
         </div>
         <div>
+          {/* For larger screen display */}
           <ul className='hidden md:flex'>
             <li className='m-2 p-1 flex' onClick={() => handleOptionSelect('clothing brand')}>
               Price <ChevronDownIcon className='w-4 h-6' />
