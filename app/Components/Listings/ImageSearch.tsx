@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { getFavorites, addFavorite, removeFavorite } from '../SmartComp/localStorageUtils';
 
@@ -86,15 +86,63 @@ const ImageSearch: React.FC = () => {
   return (
     <div className="text-center justify-center">
       <p className='font-bold text-5xl text-black'>Popular For You</p>
-      <div className="text-center text-black items-center">
-        <button className='m-2 p-1' onClick={() => handleOptionSelect('clothing brand')}>Brand</button>
-        <button className='m-2 p-1' onClick={() => handleOptionSelect('men clothing')}>Men</button>
-        <button className='m-2 p-1' onClick={() => handleOptionSelect('women clothing')}>Women</button>
-        <button className='m-2 p-1' onClick={() => handleOptionSelect('children clothing')}>Kids</button>
-        <button className='m-2 p-1' onClick={() => handleOptionSelect('favorite')}>Favorite</button>
+      <div className="dropdown border px-4 my-4 mx-20 text-black flex justify-between">
+        <div className='md:hidden'>
+          <div tabIndex={0} role="button" className="btn m-1">
+            Filter <ChevronDownIcon className='w-4 h-6' />
+          </div>
+          <ul tabIndex={0} className="md:hidden menu dropdown-content bg-white z-[1]">
+            <li className='m-2 p-1 flex' onClick={() => handleOptionSelect('clothing brand')}>
+              Price <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('men clothing')}>
+              Color <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('women clothing')}>
+              Size <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('children clothing')}>
+              Gender <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
+              Brand <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
+              Type <ChevronDownIcon className='w-4 h-6' />
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul className='hidden md:flex'>
+            <li className='m-2 p-1 flex' onClick={() => handleOptionSelect('clothing brand')}>
+              Price <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('men clothing')}>
+              Color <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('women clothing')}>
+              Size <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('children clothing')}>
+              Gender <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
+              Brand <ChevronDownIcon className='w-4 h-6' />
+            </li>
+            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
+              Type <ChevronDownIcon className='w-4 h-6' />
+            </li>
+          </ul>
+        </div>
+
+        <div className=''>
+          <button className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
+            Type <ChevronDownIcon className='w-4 h-6' />
+          </button>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <div className="relative flex items-center">
           <MagnifyingGlassIcon className="h-6 w-6 m-2 cursor-pointer" onClick={handleSubmit} />
           <input 
@@ -105,7 +153,7 @@ const ImageSearch: React.FC = () => {
             onChange={(e) => setInputData(e.target.value)}
           />
         </div>
-      </form>
+      </form> */}
 
       <div className="flex flex-wrap justify-center">
         {filteredResults.map((result, index) => (
