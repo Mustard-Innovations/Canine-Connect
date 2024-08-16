@@ -138,7 +138,7 @@ const ImageSearch: React.FC = () => {
 
         <div className=''>
           <button className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
-            Type <ChevronDownIcon className='w-4 h-6' />
+            Sort By <ChevronDownIcon className='w-4 h-6' />
           </button>
         </div>
       </div>

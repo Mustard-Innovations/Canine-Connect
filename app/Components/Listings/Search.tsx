@@ -27,20 +27,33 @@ const SearchComponent: React.FC = () => {
   }, []);
 
   return (
-    
-    <div className="relative flex items-center">
+    <div className="relative">
       {isExpanded ? (
-        <div className="relative flex items-center bg-slate-300 input input-bordered">
-          <input 
-            ref={inputRef} 
-            type="text" 
-            className="grow p-2" 
-            placeholder="Search" 
-          />
-          <XCircleIcon 
-            className="h-6 w-6 m-2 cursor-pointer" 
-            onClick={handleIconClick} 
-          />
+        <div className="Absolute">
+          <div className="">
+            <p className="text-xl">Cannine Connect</p>
+            <div className='flex flex-col p-4'>
+              <div className="w-full max-w-md relative flex bg-slate-300 rounded-md shadow-lg">
+                <input 
+                  ref={inputRef} 
+                  type="text" 
+                  className="grow p-2 bg-transparent border-none focus:outline-none" 
+                  placeholder="Search" 
+                />
+                <XCircleIcon 
+                  className="h-6 w-6 m-2 cursor-pointer" 
+                  onClick={handleIconClick} 
+                /> 
+              </div>
+            </div>
+          </div>
+          {/* Add any other content you want within the expanded area */}
+          <div className="">
+            <p className="text-lg">Popular Search</p>
+            <p className=''>Mens clothing</p>
+            <p className=''>womens clothing</p>
+            <p className=''>kids clothing</p>
+          </div>
         </div>
       ) : (
         <MagnifyingGlassIcon 
