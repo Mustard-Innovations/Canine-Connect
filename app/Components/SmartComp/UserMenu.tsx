@@ -90,6 +90,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ user, numberOfItems }) => {
               <a>My Bags ({numberOfItems} items)</a>
             </li>
             <li className='font-semibold my-2'>
+              <a>Favourites</a>
+            </li>
+            <li className='font-semibold my-2'>
               <a>Men</a>
             </li>
             <li className='font-semibold my-2'>

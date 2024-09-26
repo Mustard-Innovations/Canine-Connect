@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ChevronDownIcon, HeartIcon, StarIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { getFavorites, addFavorite, removeFavorite } from '../SmartComp/localStorageUtils';
 
@@ -156,30 +156,34 @@ const ImageSearch: React.FC = () => {
         </div>
       </form> */}
 
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center text-start">
         {filteredResults.map((result, index) => (
           <Link href={`/product-detailz?id=${result.id}`} key={result.id} passHref>
             <div className="card card-compact w-96 m-2 bg-base-100 shadow-xl">
+              <div className='flex justify-between p-3'>
+                <div className='h-6 w-6 bg-slate-200'></div>
+                <button onClick={() => toggleFavorite(result.urls.small)}>
+                  <HeartIcon 
+                    fill={favorites.includes(result.urls.small) ? "red" : "none"} 
+                    className="w-6 h-6 bg-black" 
+                  />
+                </button>
+              </div>
+              
               <a>
                 <img src={result.urls.small} alt={result.alt_description} className='h-96 w-full p-5 m-2' />
               </a>
               <div className="card-body">
                 <p className='card-title'>{result.alt_description}</p>
-                <button onClick={() => toggleFavorite(result.urls.small)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill={favorites.includes(result.urls.small) ? "red" : "none"}
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6 bg-black">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                  </svg>
-                </button>
               </div>
+              <div className='flex justify-between px-4'>
+                <p>Football shirt</p>
+                <div className='flex'>
+                  <StarIcon className='w-4 h-4 m-1' fill='gold'/> 
+                  <p>4.5</p>
+                </div>
+              </div>
+              <p className='text-lg font-bold px-4'>$59.66</p>
             </div>
           </Link>
         ))}
