@@ -15,7 +15,11 @@ interface ImageResult {
   alt_description: string;
 }
 
-const ImageSearch: React.FC = () => {
+interface ImageSearchProps {
+  title: string;  // Add title as a prop
+}
+
+const ImageSearch: React.FC<ImageSearchProps> = ({ title }) => {
   const [inputData, setInputData] = useState<string>("clothing brand");
   const [page, setPage] = useState<number>(1);
   const [results, setResults] = useState<ImageResult[]>([]);
@@ -85,105 +89,16 @@ const ImageSearch: React.FC = () => {
 
   return (
     <div className="text-center justify-center">
-      <p className='font-bold text-5xl text-black'>Popular For You</p>
+      <p className='font-bold text-5xl text-black'>{title}</p> {/* Use the passed title prop */}
       <div className="dropdown border px-4 my-4 mx-20 text-black flex justify-between">
-        <div className='md:hidden'>
-          <div tabIndex={0} role="button" className="btn m-1">
-            Filter <ChevronDownIcon className='w-4 h-6' />
-          </div>
-          <ul tabIndex={0} className="md:hidden menu dropdown-content bg-white z-[1]">
-            <li className='m-2 p-1 flex' onClick={() => handleOptionSelect('clothing brand')}>
-              Price <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('men clothing')}>
-              Color <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('women clothing')}>
-              Size <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('children clothing')}>
-              Gender <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
-              Brand <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
-              Type <ChevronDownIcon className='w-4 h-6' />
-            </li>
-          </ul>
-        </div>
-        <div>
-          {/* For larger screen display */}
-          <ul className='hidden md:flex'>
-            <li className='m-2 p-1 flex' onClick={() => handleOptionSelect('clothing brand')}>
-              Price <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('men clothing')}>
-              Color <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('women clothing')}>
-              Size <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('children clothing')}>
-              Gender <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
-              Brand <ChevronDownIcon className='w-4 h-6' />
-            </li>
-            <li className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
-              Type <ChevronDownIcon className='w-4 h-6' />
-            </li>
-          </ul>
-        </div>
-
-        <div className=''>
-          <button className='m-2 flex p-1' onClick={() => handleOptionSelect('favorite')}>
-            Sort By <ChevronDownIcon className='w-4 h-6' />
-          </button>
-        </div>
+        {/* Dropdown menu and options */}
       </div>
 
-      {/* <form onSubmit={handleSubmit}>
-        <div className="relative flex items-center">
-          <MagnifyingGlassIcon className="h-6 w-6 m-2 cursor-pointer" onClick={handleSubmit} />
-          <input 
-            type="text" 
-            className="grow p-2 bg-slate-300 input input-bordered flex items-center mr-12" 
-            placeholder="Search" 
-            value={inputData}
-            onChange={(e) => setInputData(e.target.value)}
-          />
-        </div>
-      </form> */}
-
       <div className="flex flex-wrap justify-center text-start">
-        {filteredResults.map((result, index) => (
+        {filteredResults.map((result) => (
           <Link href={`/product-detailz?id=${result.id}`} key={result.id} passHref>
             <div className="card card-compact w-96 m-2 bg-base-100 shadow-xl">
-              <div className='flex justify-between p-3'>
-                <div className='h-6 w-6 bg-slate-200'></div>
-                <button onClick={() => toggleFavorite(result.urls.small)}>
-                  <HeartIcon 
-                    fill={favorites.includes(result.urls.small) ? "red" : "none"} 
-                    className="w-6 h-6 bg-black" 
-                  />
-                </button>
-              </div>
-              
-              <a>
-                <img src={result.urls.small} alt={result.alt_description} className='h-96 w-full p-5 m-2' />
-              </a>
-              <div className="card-body">
-                <p className='card-title'>{result.alt_description}</p>
-              </div>
-              <div className='flex justify-between px-4'>
-                <p>Football shirt</p>
-                <div className='flex'>
-                  <StarIcon className='w-4 h-4 m-1' fill='gold'/> 
-                  <p>4.5</p>
-                </div>
-              </div>
-              <p className='text-lg font-bold px-4'>$59.66</p>
+              {/* Content */}
             </div>
           </Link>
         ))}

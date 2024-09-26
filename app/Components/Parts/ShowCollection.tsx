@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ArrowLeftCircleIcon, ArrowRightCircleIcon, HeartIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { fetchUnsplashData } from '@/app/utils/fetchUnsplashData';
@@ -20,6 +20,7 @@ interface ShowCollectionProps {
 const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) => {
   const [items, setItems] = useState<CollectionItem[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null); // Reference for the carousel
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -43,16 +44,14 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) =
   };
 
   const scrollLeft = () => {
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-      carousel.scrollBy({ left: -300, behavior: 'smooth' });
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-      carousel.scrollBy({ left: 300, behavior: 'smooth' });
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
 
@@ -66,16 +65,19 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) =
           <ArrowRightCircleIcon className='w-6 h-6 m-2 cursor-pointer' onClick={scrollRight} />
         </div>
       </div>
-      <div className='carousel carousel-center rounded-box max-w-md md:max-w-full space-x-4 p-6'>
+      <div
+        className='carousel carousel-center rounded-box max-w-md md:max-w-full space-x-4 p-6 overflow-x-scroll'
+        ref={carouselRef} // Attach ref here
+      >
         {items.map(item => (
           <Link key={item.id} href={`/product-details/${item.id}`} passHref>
             <div className="carousel-item card card-compact bg-base-100 w-full md:m-3 shadow-xl">
               <div className='flex justify-between p-3'>
                 <div className='h-6 w-6 bg-slate-200'></div>
-                <button onClick={() => toggleFavorite(item.imageUrl)}>
-                  <HeartIcon 
-                    fill={favorites.includes(item.imageUrl) ? "red" : "none"} 
-                    className="w-6 h-6 bg-black" 
+                <button onClick={() => toggleFavorite(item.imageUrl)} aria-label="Toggle Favorite">
+                  <HeartIcon
+                    fill={favorites.includes(item.imageUrl) ? "red" : "none"}
+                    className="w-6 h-6 bg-black"
                   />
                 </button>
               </div>
@@ -83,7 +85,7 @@ const ShowCollection: React.FC<ShowCollectionProps> = ({ title, description }) =
                 <img 
                   src={item.imageUrl} 
                   alt={item.title} 
-                  onError={(e) => e.currentTarget.src = '/fallback-image.png'}
+                  onError={(e) => e.currentTarget.src = '/fallback-image.png'} 
                 />
               </figure>
               <div className="card-body">
